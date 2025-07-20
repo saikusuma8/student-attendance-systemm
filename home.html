@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Attendance Management System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: linear-gradient(to right, #f6f9fc, #e0ecff);
+      color: #333;
+    }
+    nav {
+      background: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    nav .logo {
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: #2b61ff;
+    }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s ease;
+    }
+    nav ul li a:hover {
+      color: #2b61ff;
+    }
+    .hero {
+      text-align: center;
+      padding: 5rem 2rem;
+      background: url('https://www.transparenttextures.com/patterns/cubes.png') repeat, #e7f0ff;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      color: #222;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .hero .buttons a {
+      display: inline-block;
+      padding: 0.8rem 2rem;
+      margin: 0.5rem;
+      border-radius: 30px;
+      color: white;
+      background: #2b61ff;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 8px 15px rgba(43, 97, 255, 0.3);
+      transition: background 0.3s ease;
+    }
+    .hero .buttons a:hover {
+      background: #1a48d3;
+    }
+    .features {
+      padding: 4rem 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      background: white;
+    }
+    .feature {
+      background: #f1f5ff;
+      padding: 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+    .feature:hover {
+      transform: translateY(-10px);
+    }
+    .feature i {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: #2b61ff;
+    }
+    .contact {
+      padding: 4rem 5%;
+      background: #f6f9fc;
+      text-align: center;
+    }
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .contact p {
+      color: #555;
+    }
+    footer {
+      background: #1c1c1c;
+      color: #ccc;
+      text-align: center;
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Attend Today,Achieve Tomorrow</div>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/login">Login</a></li>
+      <li><a href="/register">Register</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>  <section class="hero">
+    <h1>Student Attendance Management System</h1>
+    <p>Track and manage student attendance seamlessly, securely, and smartly.</p>
+    <div class="buttons">
+      <a href="/login">Login</a>
+      <a href="/register">Register</a>
+    </div>
+  </section>  <section class="features">
+    <div class="feature">
+      <i class="fas fa-lock"></i>
+      <h3>Secure Login</h3>
+      <p>Teacher login with encrypted passwords and role-based access.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-chart-line"></i>
+      <h3>Real-time Analytics</h3>
+      <p>Visualize daily attendance stats and download reports.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-user-graduate"></i>
+      <h3>Student Management</h3>
+      <p>Quickly add, update, and view student records by section.</p>
+    </div>
+    <div class="feature">
+      <i class="fas fa-calendar-check"></i>
+      <h3>Attendance Marking</h3>
+      <p>Mark attendance per period with duplicate protection.</p>
+    </div>
+  </section>  <section class="contact" id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: support@attendsmart.com | Phone: +91-98765-43210</p>
+  </section>  <footer>
+    &copy; 2025 AttendSmart. All rights reserved.
+  </footer>
+</body>
+</html>

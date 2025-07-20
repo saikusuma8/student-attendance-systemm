@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Registration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> <!-- Success Alert -->
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #dff1ff, #fce4ec);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background: white;
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+            width: 420px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4a148c;
+            margin-bottom: 20px;
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        input[readonly] {
+            background: #f3f3f3;
+            font-weight: bold;
+        }
+
+        button {
+            width: 100%;
+            background: #6a1b9a;
+            color: white;
+            padding: 12px;
+            border: none;
+            font-weight: bold;
+            border-radius: 8px;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #4a148c;
+            cursor: pointer;
+        }
+
+        .icon-title {
+            text-align: center;
+            font-size: 40px;
+            color: #6a1b9a;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon-title">👨‍🏫</div>
+        <h2>Register New Teacher</h2>
+
+        <form action="/register" method="POST">
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="e.g., Kusuma Mocharla" required>
+
+            <label>Email ID</label>
+            <input type="email" name="email" placeholder="e.g., kusuma@mail.com" required>
+
+            <label>Department</label>
+            <select name="department" required>
+                <option value="">-- Select Department --</option>
+                <option value="MCA">MCA</option>
+                <option value="MBA">MBA</option>
+                <option value="B.Tech">B.Tech</option>
+                <option value="Science">Science</option>
+            </select>
+
+            <label>Subject</label>
+            <select name="subject" required>
+                <option value="">-- Select Subject --</option>
+                <option value="Python">Python</option>
+                <option value="Java">Java</option>
+                <option value="DBMS">DBMS</option>
+                <option value="OS">Operating System</option>
+                <option value="AI">Artificial Intelligence</option>
+                <option value="CN">Computer Networks</option>
+            </select>
+
+            <label>create Password</label>
+            <input type="password" name="password" placeholder="choose a strong password" required>
+
+            <button type="submit">Register Now</button>
+        </form>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <script>
+            {% for category, message in messages %}
+                Swal.fire({
+                    icon: '{{ 'success' if category == "success" else 'error' }}',
+                    title: '{{ message }}',
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            {% endfor %}
+        </script>
+      {% endif %}
+    {% endwith %}
+</body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Attendance Statistics</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }body {
+  background: linear-gradient(to right, #f9fbe7, #e1f5fe);
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+h2 {
+  text-align: center;
+  color: #1e88e5;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+label {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+select, input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  padding: 12px;
+  background: #0288d1;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #0277bd;
+}
+
+.result-section {
+  margin-top: 30px;
+  display: none;
+}
+
+.stats-box {
+  background: #e3f2fd;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.chart-container {
+  max-width: 100%;
+  height: auto;
+}
+
+.download-btn {
+  background-color: #4caf50;
+  margin-top: 15px;
+}
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>📅 Attendance Statistics</h2>
+    <form id="statsForm">
+      <div>
+      <label for="student_name"><strong>Student Name:</strong></label>
+<input type="text" id="student_name" name="student_name" placeholder="Enter student name" required>
+        </select>
+      </div><div>
+    <label for="section">Section</label>
+    <select id="section" name="section" required>
+      <option value="">-- Select --</option>
+      <option>A</option>
+      <option>B</option>
+      <option>C</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="year">Year</label>
+    <select id="year" name="year" required>
+      <option value="">-- Select --</option>
+      <option>1st</option>
+      <option>2nd</option>
+      <option>3rd</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="department">Department</label>
+    <select id="department" name="department" required>
+      <option value="">-- Select --</option>
+      <option>CSE</option>
+      <option>ECE</option>
+      <option>MCA</option>
+    </select>
+  </div>
+
+  <div>
+    <label for="from">From Date</label>
+    <input type="date" id="from" name="from" required>
+  </div>
+
+  <div>
+    <label for="to">To Date</label>
+    <input type="date" id="to" name="to" required>
+  </div>
+
+  <button type="submit">View Statistics</button>
+</form>
+<div class="result-section" id="result">
+  <div class="stats-box">
+    <p><strong>Attendance %:</strong> <span id="percentage">95%</span></p>
+    <p><strong>Present Days:</strong> <span id="present">19</span></p>
+    <p><strong>Absent Days:</strong> <span id="absent">1</span></p>
+    <p><strong>Dates Present:</strong> <span id="presentDates">1,2,3,5,6...</span></p>
+    <p><strong>Dates Absent:</strong> <span id="absentDates">4</span></p>
+  </div>
+  <canvas id="attendanceChart" class="chart-container"></canvas>
+  <button class="download-btn" onclick="window.print()">🔹 Download PDF</button>
+</div>
+
+  </div>  <script>
+    const form = document.getElementById('statsForm');
+    const result = document.getElementById('result');
+    const ctx = document.getElementById('attendanceChart').getContext('2d');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      result.style.display = 'block';
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Present', 'Absent'],
+          datasets: [{
+            label: 'Attendance Count',
+            data: [19, 1],
+            backgroundColor: ['#66bb6a', '#ef5350']
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: { display: true },
+            tooltip: {
+              callbacks: {
+                label: function(context) {
+                  return context.dataset.label + ': ' + context.raw;
+                }
+              }
+            }
+          }
+        }
+      });
+    });
+  </script></body>
+</html>

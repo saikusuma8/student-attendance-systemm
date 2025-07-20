@@ -1,0 +1,88 @@
+<!-- templates/dashboard.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Teacher Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(to right, #fce4ec, #e3f2fd);
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    h2 {
+      color: #2e7d32;
+      margin-bottom: 30px;
+    }
+
+    .button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin: 10px 0;
+      background: #4a148c;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .button:hover {
+      background: #6a1b9a;
+    }
+
+    .icon {
+      margin-right: 8px;
+    }
+
+    .logout-btn {
+      background: #d32f2f;
+    }
+
+    .logout-btn:hover {
+      background: #b71c1c;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>👋 Welcome, {{ session['teacher_name'] }}!</h2>
+
+    <form action="/add_student">
+      <button class="button"><span class="icon">➕</span> Add Student</button>
+    </form>
+
+    <form action="/mark_attendance">
+      <button class="button"><span class="icon">📝</span> Mark Attendance</button>
+    </form>
+
+    <form action="/view_attendance">
+      <button class="button"><span class="icon">👁</span> View Attendance</button>
+    </form>
+
+    <form action="/statistics">
+      <button class="button"><span class="icon">📊</span> View Statistics</button>
+    </form>
+
+    <form action="/logout">
+      <button class="button logout-btn"><span class="icon">🚪</span> Logout</button>
+    </form>
+  </div>
+</body>
+</html>

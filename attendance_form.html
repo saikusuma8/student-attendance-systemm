@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f4f8;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        form {
+            max-width: 700px;
+            margin: auto;
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: 600;
+        }
+        select, input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        button {
+            background: #2ecc71;
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        button:hover {
+            background: #27ae60;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            border: 1px solid #bdc3c7;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #ecf0f1;
+        }
+        .center {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h2>📋 Mark Attendance</h2>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <ul>
+          {% for category, message in messages %}
+            <li style="color: {% if category == 'error' %}red{% else %}green{% endif %}; text-align:center;">{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    {% endwith %}
+
+    <form method="POST">
+        <label for="section">Select Section:</label>
+        <select name="section" required>
+            <option value="">-- Choose Section --</option>
+            <option value="MCA-A" {% if section == 'MCA-A' %}selected{% endif %}>MCA-A</option>
+            <option value="MCA-B" {% if section == 'MCA-B' %}selected{% endif %}>MCA-B</option>
+            <option value="MCA-C" {% if section == 'MCA-C' %}selected{% endif %}>MCA-C</option>
+        </select>
+
+        <label for="date">Select Date:</label>
+        <input type="date" name="date" value="{{ selected_date if selected_date else today }}" required>
+
+        <label for="period">Period:</label>
+<select name="period" readonly disabled>
+  <option value="{{ current_period }}">Period {{ current_period }}</option>
+</select>
+
+<!-- Still pass it using hidden field since disabled fields are not sent -->
+<input type="hidden" name="period" value="{{ current_period }}">
+
+        {% if not students %}
+            <div class="center">
+                <button type="submit" name="load_students">📥 Load Students</button>
+            </div>
+        {% endif %}
+<div style="text-align:center; margin-top: 20px;">
+    <a href="/dashboard">
+        <button type="button" style="background-color: #3498db; color: white; font-weight:bold; padding: 10px 20px; border:none; border-radius:8px; cursor:pointer;">
+            ⬅ Back to Dashboard
+        </button>
+    </a>
+</div>
+
+
+
+        {% if students %}
+            <h3>Period: {{ current_period }}</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>Name</th>
+                        <th>Present</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in students %}
+                    <tr>
+                        <td>{{ student[2] }}</td>
+                        <td>{{ student[1] }}</td>
+                        <td><input type="checkbox" name="present[]" value="{{ student[0] }}" checked></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <div class="center">
+                <br>
+                <button type="submit" name="submit_attendance">✅ Submit Attendance</button>
+            </div>
+        {% endif %}
+    </form>
+</body>
+</html>

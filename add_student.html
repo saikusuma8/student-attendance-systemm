@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Add Student</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <style>
+    body {
+      background: linear-gradient(to right, #e1f5fe, #fce4ec);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .form-container {
+      background: white;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      width: 450px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #00695c;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-top: 6px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #00695c;
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    .icon-title {
+      font-size: 40px;
+      text-align: center;
+      color: #00695c;
+    }
+  </style>
+</head>
+<body>
+   <div class="form-container">
+    <div class="icon-title">🎓</div>
+    <h2>Add New Student</h2>
+
+    <form action="/add_student" method="POST">
+      <label>Full Name</label>
+      <input type="text" name="name" placeholder="e.g., Anjali Reddy" required>
+
+      <label>Roll Number</label>
+      <input type="text" name="roll" placeholder="e.g., MCA21A001" required>
+
+      <label>Section</label>
+      <select name="section" required>
+        <option value="">-- Select Section --</option>
+        <option value="MCA-A">MCA-A</option>
+        <option value="MCA-B">MCA-B</option>
+        <option value="MCA-C">MCA-C</option>
+      </select>
+
+      <label>Department</label>
+      <select name="department" required>
+        <option value="">-- Select Department --</option>
+        <option value="MCA">MCA</option>
+        <option value="MBA">MBA</option>
+        <option value="B.Tech">B.Tech</option>
+      </select>
+
+      <label>Year</label>
+      <select name="year" required>
+        <option value="">-- Select Year --</option>
+        <option value="1st Year">1st Year</option>
+        <option value="2nd Year">2nd Year</option>
+        <option value="3rd Year">3rd Year</option>
+      </select>
+
+      <button type="submit">➕ Add Student</button>
+    </form>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <script>
+          {% for category, message in messages %}
+            Swal.fire({
+              icon: '{{ 'success' if category == "success" else 'error' }}',
+              title: '{{ message }}',
+              showConfirmButton: false,
+              timer: 2000
+            });
+          {% endfor %}
+        </script>
+      {% endif %}
+    {% endwith %}
+  </div>
+</body>
+</html>
