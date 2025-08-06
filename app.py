@@ -5,7 +5,7 @@ import string
 from werkzeug.security import generate_password_hash
 from flask import session
 
-app = Flask(__name__,template_folder='templates' ,static_folder='static')
+app = Flask(__name__,template_folder="templates",static_folder="static")
 app.secret_key = 'your_secret_key'
 @app.route('/')
 def home():
