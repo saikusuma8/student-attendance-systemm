@@ -472,6 +472,9 @@ def view_students():
     return render_template("view_students.html", students=students, section=selected_section)     
 
   
+
+
 if __name__ == '__main__':
-    init_db() 
-    app.run(debug=True)
+    init_db()
+        
+    app.run(host='0.0.0.0',port=5000)
