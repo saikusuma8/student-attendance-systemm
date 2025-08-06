@@ -5,7 +5,7 @@ import string
 from werkzeug.security import generate_password_hash
 from flask import session
 
-app = Flask(__name__)
+app = Flask(__name__,template_folder='templates' ,static_folder='static')
 app.secret_key = 'your_secret_key'
 @app.route('/')
 def home():
@@ -472,7 +472,6 @@ def view_students():
     return render_template("view_students.html", students=students, section=selected_section)     
 
   
-
 
 if __name__ == '__main__':
     init_db()
